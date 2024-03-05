@@ -1,7 +1,19 @@
-export const GeneralCurrencies = () => {
+export const GeneralCurrencies = ({ currencyValue }: any) => {
   return (
-    <div className="flex justify-center border border-gray-800 m-5">
-      <h1>General Currencies</h1>
-    </div>
+    <>
+      <div className="flex flex-col items-center justify-center m-5">
+        <h1 className="text-center">
+          The value
+          <br /> in USD is
+        </h1>
+        <div className="flex justify-center mt-2">
+          <input
+            value={currencyValue}
+            className="border rounded-lg text-end bg-white border-gray-400 w-1/2 p-2"
+            disabled={true}
+          />
+        </div>
+      </div>
+    </>
   );
 };

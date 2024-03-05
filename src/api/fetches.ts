@@ -4,5 +4,6 @@ export const fetchCurrencies = async () => {
     `https://api.freecurrencyapi.com/v1/latest?apikey=${apiKey}`
   );
   const data = await response.json();
-  return console.log(data);
+
+  return data;
 };
