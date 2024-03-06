@@ -5,13 +5,20 @@ import { GeneralCurrencies } from "./GeneralCurrencies";
 import { ConvertComponent } from "./ConvertComponent";
 
 export const AppContainer = () => {
-  const [currencyValue, setCurrencyValue] = useState(``);
+  const [conversionValue, setConversionValue] = useState(``);
+  const [selectedCurrencySymbol, setSelectedCurrencySymbol] = useState(``);
 
   return (
-    <div className="sm:flex sm:justify-center sm:items-center border border-gray-800">
+    <div className="flex flex-col sm:flex-row sm:justify-center sm:items-center mt-[10rem] ">
       <BrlValue />
-      <ConvertComponent setCurrencyValue={setCurrencyValue} />
-      <GeneralCurrencies currencyValue={currencyValue} />
+      <ConvertComponent
+        setCurrencyValue={setConversionValue}
+        setSelectedCurrencySymbol={setSelectedCurrencySymbol}
+      />
+      <GeneralCurrencies
+        currencyValue={conversionValue}
+        selectedCurrencySymbol={selectedCurrencySymbol}
+      />
     </div>
   );
 };
