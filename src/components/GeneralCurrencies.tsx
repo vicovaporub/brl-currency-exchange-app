@@ -3,8 +3,8 @@ export const GeneralCurrencies = ({ currencyValue }: any) => {
     <>
       <div className="flex flex-col items-center justify-center m-5">
         <h1 className="text-center">
-          The value
-          <br /> in USD is
+          The new
+          <br /> value is
         </h1>
         <div className="flex justify-center mt-2">
           <input
