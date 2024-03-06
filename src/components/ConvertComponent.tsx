@@ -65,6 +65,9 @@ export const ConvertComponent = ({ setCurrencyValue }: any) => {
         onChange={handleSelectChange}
         value={selectedCurrency}
       >
+        <option value="" disabled>
+          Select a timezone
+        </option>
         {currenciesForSelect.map((currency) => (
           <option key={currency} value={currency}>
             {currency}
