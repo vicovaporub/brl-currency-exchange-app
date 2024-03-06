@@ -8,7 +8,7 @@ export const AppContainer = () => {
   const [currencyValue, setCurrencyValue] = useState(``);
 
   return (
-    <div className="flex justify-center items-center border border-gray-800">
+    <div className="sm:flex sm:justify-center sm:items-center border border-gray-800">
       <BrlValue />
       <ConvertComponent setCurrencyValue={setCurrencyValue} />
       <GeneralCurrencies currencyValue={currencyValue} />
