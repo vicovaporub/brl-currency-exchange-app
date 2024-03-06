@@ -9,7 +9,7 @@ export const AppContainer = () => {
   const [selectedCurrencySymbol, setSelectedCurrencySymbol] = useState(``);
 
   return (
-    <div className="flex flex-col sm:flex-row sm:justify-center sm:items-center mt-[10rem] ">
+    <div className="flex flex-col sm:flex-row sm:justify-center sm:items-center space-x-4 mt-[10rem] sm:mr-[4.5rem]">
       <BrlValue />
       <ConvertComponent
         setCurrencyValue={setConversionValue}
