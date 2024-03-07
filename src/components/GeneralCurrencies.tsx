@@ -1,7 +1,10 @@
 export const GeneralCurrencies = ({
   currencyValue,
   selectedCurrencySymbol,
-}: any) => {
+}: {
+  currencyValue: string;
+  selectedCurrencySymbol: string;
+}) => {
   return (
     <div className="rounded-lg p-6 m-5">
       <h1 className="text-center text-2xl font-bold text-gray-800 mb-4">

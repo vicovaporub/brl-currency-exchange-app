@@ -1,18 +1,24 @@
-import { fetchMockCurrencies } from "@/api/fetches";
+import { fetchCurrencies, fetchMockCurrencies } from "@/api/fetches";
+import { CurrencyType } from "@/types/CurrencyType";
 import { useEffect, useState } from "react";
 
 export const ConvertComponent = ({
   setCurrencyValue,
   setSelectedCurrencySymbol,
-}: any) => {
+}: {
+  setCurrencyValue: (value: string) => void;
+  setSelectedCurrencySymbol: (symbol: string) => void;
+}) => {
   const [currenciesForSelect, setCurrenciesForSelect] = useState<string[]>([]);
   const [selectedCurrency, setSelectedCurrency] = useState("");
-  const [currencyAndValues, setCurrencyAndValues] = useState<any[]>([]);
+  const [currencyAndValues, setCurrencyAndValues] = useState<CurrencyType[]>(
+    []
+  );
 
   useEffect(() => {
-    const fetchCurrencies = async () => {
+    const fetchAndSetCurrencyData = async () => {
       try {
-        const data = await fetchMockCurrencies();
+        const data = await fetchCurrencies(); //if you do not have an api key, you can use the fetchMockCurrencies() function instead of fetchCurrencies
         setCurrencyAndValues(data.data);
 
         const currencyNames = data.data.map((currency) => currency.currency);
@@ -22,10 +28,12 @@ export const ConvertComponent = ({
       }
     };
 
-    fetchCurrencies();
+    fetchAndSetCurrencyData();
   }, []);
 
-  const handleSelectChange = async (e: any) => {
+  const handleSelectChange = async (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     const currencyToConvert = e.target.value;
     setSelectedCurrency(currencyToConvert);
     setSelectedCurrencySymbol(currencyToConvert);
@@ -66,7 +74,7 @@ export const ConvertComponent = ({
   };
 
   return (
-    <div className="flex flex-col justify-center mx-auto items-center">
+    <div className="flex flex-col justify-center mx-auto pr-[2rem] items-center">
       <select
         className="h-7   mt-3 border rounded-lg border-gray-400"
         id="currencies"
