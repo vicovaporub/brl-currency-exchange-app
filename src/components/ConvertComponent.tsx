@@ -24,7 +24,7 @@ export const ConvertComponent = ({
   useEffect(() => {
     const fetchAndSetCurrencyData = async () => {
       try {
-        const data = await fetchData(); //if you do not have an api key, you can use the fetchMockCurrencies() function instead of fetchCurrencies
+        const data = await fetchData(); //if you do not have an api key, you can use the fetchMockCurrencies() function instead of fetchData()
         setCurrencyAndValues(data.data);
 
         const currencyNames = data.data.map((currency) => currency.currency);
