@@ -1,6 +1,12 @@
-import { fetchCurrencies, fetchMockCurrencies } from "@/api/fetches";
+import { CurrencyClass } from "@/shared/CurrencyClass";
 import { CurrencyType } from "@/types/CurrencyType";
 import { useEffect, useState } from "react";
+
+async function fetchData() {
+  const response = await fetch("/api/fetchCurrencyData");
+  const data = await response.json();
+  return new CurrencyClass(data.data);
+}
 
 export const ConvertComponent = ({
   setCurrencyValue,
@@ -18,7 +24,7 @@ export const ConvertComponent = ({
   useEffect(() => {
     const fetchAndSetCurrencyData = async () => {
       try {
-        const data = await fetchCurrencies(); //if you do not have an api key, you can use the fetchMockCurrencies() function instead of fetchCurrencies
+        const data = await fetchData(); //if you do not have an api key, you can use the fetchMockCurrencies() function instead of fetchCurrencies
         setCurrencyAndValues(data.data);
 
         const currencyNames = data.data.map((currency) => currency.currency);
