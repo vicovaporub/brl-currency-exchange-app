@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# BRL Currency Exchange
 
-## Getting Started
+## Description
 
-First, run the development server:
+Built with Nextjs, the project is a simple page that fetches data from a currency API. The user can input a value in BRL (brazilian real), select another currency and then click the convert button to convert the value to the chosen currency.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+You can access the project by clicking [here](https://brl-currency-exchange-app.vercel.app)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Table of Contents
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [Installation](#installation)
+- [Usage](#usage)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Installation
 
-## Learn More
+1. Clone the repository:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   git clone https://github.com/vicovaporub/brl-currency-exchange-app
+   cd timezone-app
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2. Install dependecies:
 
-## Deploy on Vercel
+   ```bash
+   npm install
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3. Start:
+   ```bash
+   npm run dev
+   (Open the browser and access the application at `http://localhost:3000`)
+   ```
+
+## Warning
+
+If you want to run the project, it uses a .env variable that holds the api key. If you don't have a key for the api, there's a function that fetches data from a mock api, but remember that the mock api is not up to date with the values from all currencies.
+
+## Usage
+
+- Input a value in BRL.
+- Select the currency for the conversion
+- Click the convert button so the conversion happen
