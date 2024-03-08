@@ -1,3 +1,4 @@
+import { fetchMockCurrencies } from "@/pages/api/fetchMockCurrencies";
 import { CurrencyClass } from "@/shared/CurrencyClass";
 import { CurrencyType } from "@/types/CurrencyType";
 import { useEffect, useState } from "react";
@@ -20,6 +21,8 @@ export const ConvertComponent = ({
   const [currencyAndValues, setCurrencyAndValues] = useState<CurrencyType[]>(
     []
   );
+  const [brlRateToSelectedCurrency, setBrlRateToSelectedCurrency] =
+    useState("");
 
   useEffect(() => {
     const fetchAndSetCurrencyData = async () => {
@@ -37,12 +40,32 @@ export const ConvertComponent = ({
     fetchAndSetCurrencyData();
   }, []);
 
-  const handleSelectChange = async (
-    e: React.ChangeEvent<HTMLSelectElement>
-  ) => {
+  const brlValue = currencyAndValues.filter(
+    (currency) => currency.currency === "BRL"
+  )[0]?.value;
+
+  const usdValue = currencyAndValues.filter(
+    (currency) => currency.currency === "USD"
+  )[0]?.value;
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const currencyToConvert = e.target.value;
     setSelectedCurrency(currencyToConvert);
     setSelectedCurrencySymbol(currencyToConvert);
+    setCurrencyValue("");
+
+    const selectedCurrencyData = currencyAndValues.find(
+      (currency) => currency.currency === currencyToConvert
+    );
+
+    if (selectedCurrencyData) {
+      const brlToSelectedCurrency = (
+        (usdValue / brlValue) *
+        selectedCurrencyData.value
+      ).toFixed(2);
+      console.log(brlToSelectedCurrency);
+      setBrlRateToSelectedCurrency(brlToSelectedCurrency);
+    }
   };
 
   const convertToggle = () => {
@@ -64,10 +87,6 @@ export const ConvertComponent = ({
         (currency) => currency.currency === selectedCurrency
       )[0];
 
-      const brlValue = currencyAndValues.filter(
-        (currency) => currency.currency === "BRL"
-      )[0].value;
-
       const inputValueToDollar = parseFloat(inputValue.value) / brlValue;
 
       const currencyValueToOneDollar = selectedCurrencyData.value;
@@ -75,7 +94,7 @@ export const ConvertComponent = ({
       const convertion = (
         inputValueToDollar * currencyValueToOneDollar
       ).toFixed(2);
-      setCurrencyValue(`${convertion} ${selectedCurrency}`);
+      setCurrencyValue(`${convertion}`);
     }
   };
 
@@ -98,11 +117,16 @@ export const ConvertComponent = ({
       </select>
       <button
         onClick={convertToggle}
-        className="h-[3.2rem] p-3 flex w-[9.8rem] mt-3 justify-center border rounded-lg
+        className="h-[3.2rem] p-3 flex w-[7rem] mt-3 justify-center border rounded-lg
       border-gray-400 bg-blue-900 hover:bg-blue-800 text-white"
       >
         Convert
       </button>
+      <div className="mt-2 p-[3px]">
+        {selectedCurrency ? (
+          <span className="text-lg font-semibold ">{`1 BRL = ${brlRateToSelectedCurrency} ${selectedCurrency}`}</span>
+        ) : null}
+      </div>
     </div>
   );
 };
