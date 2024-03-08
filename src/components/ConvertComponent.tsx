@@ -63,7 +63,6 @@ export const ConvertComponent = ({
         (usdValue / brlValue) *
         selectedCurrencyData.value
       ).toFixed(2);
-      console.log(brlToSelectedCurrency);
       setBrlRateToSelectedCurrency(brlToSelectedCurrency);
     }
   };
